@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.lx025.study_apir.model.Product;
 import com.github.lx025.study_apir.service.ProductService;
 
 @RestController
@@ -18,7 +19,9 @@ public class ControllerProduct {
     @Autowired
     private ProductService service;
     @PostMapping
-    public ResponseEntity<String> create(){
+    public ResponseEntity<String> create(Product product){
+
+        System.out.println(product.getNome());
         service.createProduct(null);
         return ResponseEntity.status(201).body("Produto criado");
     }
