@@ -2,10 +2,10 @@ package com.github.lx025.study_apir.model;
 
 public class Product {
 
-    private long id;
+    private Long id;
     private String nome;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -13,7 +13,7 @@ public class Product {
         return nome;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
