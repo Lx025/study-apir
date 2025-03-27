@@ -1,23 +1,41 @@
- Study APIR
+# Study APIR
 
 API Java para estudo de Spring Boot
----
+
 ## Instalação
 
- - Limpar e criar a pasta `/target`
+* Limpar e criar a pasta */target*
 
- ```mvn clean packege```
+```
+mvn clean package
+```
 
----
+* Configuração do Swagger
+
+    - https://springdoc.org/properties.html
+
+- application.properties
+
+```
+springdoc.swagger-ui.path=/
+springdoc.swagger-ui.disable-swagger-default-url=true
+```
+
+
 ## Navegação
 
 ### Executar a API
 
-- Executando **Maven**
+-  *Executando* **Maven**
 
-```mvn spring-boot:run```
+```
+mvn spring-boot:run
+```
 
 ### Documentação da API (Swagger)
+- http://localhost:8080/swagger-ui.html
 
 
-## Referências
+## Referencias
+
+- https://springdoc.org/
