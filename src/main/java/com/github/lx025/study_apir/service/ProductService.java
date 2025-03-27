@@ -10,52 +10,52 @@ import org.springframework.stereotype.Service;
 import com.github.lx025.study_apir.model.Product;
 
 import dto.ProductRequestCreate;
+import dto.ProductRequestUpdate;
+
+
+
 
 @Service
 public class ProductService {
-    
+    private List<Product> products = new ArrayList<>();
+    private Long sequence = 1L;
 
-    private static List<Product> products = new ArrayList<>();
-        
-            private long sequence = 1L;
+    private static final BigDecimal VALOR_PADRAO 
+        = new BigDecimal(2000);
 
-            private static final BigDecimal Valo_Padrao = new BigDecimal(200);
-        
-            public Product createProduct(ProductRequestCreate dto) {
-                Product product = new Product();
-                product.setId(sequence++);
-                product.setNome(dto.getNome());
-                product.setValor(Valo_Padrao);
-                products.add(product);
-        
-                return product;
-            }
-
-            
-        
-            public Optional<Product> updateProduct(Long id, ProductRequestCreate dto) {
-        
-                return products.stream()
-                .filter(p ->p.getId().equals(id))
-                .findFirst()
-                .map(p-> {
-                    p.setValor(dto.getValor());
-                    return p;
-                });
-
+    public Product createProduct(ProductRequestCreate dto) {
+        Product product = new Product();        
+        product.setId(sequence++);
+        product.setNome(dto.getNome());
+        product.setValor(VALOR_PADRAO);
+        products.add(product);
+        return product;
     }
 
-    public Optional<Product> getProductId(Long id) {
-        return products.stream().filter(p -> p.getId().equals(id)).findFirst();
+    public Optional<Product> getProductById(Long id) {
+        return products.stream()
+            .filter(p -> p.getId().equals(id))
+            .findFirst();
     }
 
-    public List<Product> getAll(){
+    public List<Product> getAll() {
         return products;
+    }
 
+    public Optional<Product> updateProduct(
+            Long id, ProductRequestUpdate dto) {
+
+        return products.stream()
+            .filter(p -> p.getId().equals(id))
+            .findFirst()
+            .map(p -> {                
+                p.setValor(dto.getValor());
+                return p;
+                }
+            );
     }
 
     public boolean deleteProduct(Long id) {
-        return products.removeIf(p->p.getId().equals(id));
+        return products.removeIf(p -> p.getId().equals(id));
     }
-
 }

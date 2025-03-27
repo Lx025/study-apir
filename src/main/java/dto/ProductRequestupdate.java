@@ -2,7 +2,7 @@ package dto;
 
 import java.math.BigDecimal;
 
-public class ProductRequestupdate {
+public class ProductRequestUpdate {
 
     private BigDecimal valor;
 

@@ -1,7 +1,6 @@
 package com.github.lx025.study_apir.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,48 +16,51 @@ import com.github.lx025.study_apir.model.Product;
 import com.github.lx025.study_apir.service.ProductService;
 
 import dto.ProductRequestCreate;
+import dto.ProductRequestUpdate;
 
 @RestController
 @RequestMapping("produtos")
 public class ControllerProduct {
 
     @Autowired
-    private ProductService service;
+    private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<Product> create(@RequestBody ProductRequestCreate dto) {
-
-        Product productCreated = service.createProduct(dto);
+    public ResponseEntity<Product> create(
+                                @RequestBody ProductRequestCreate dto) {                                    
+        Product productCreated = productService.createProduct(dto);
         return ResponseEntity.status(201).body(productCreated);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        boolean result = productService.deleteProduct(id);
+
+        if (result) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }     
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody ProductRequestCreate dto) {
-        return service.updateProduct(id,dto)
+    public ResponseEntity<Product> 
+            update(@PathVariable Long id, @RequestBody ProductRequestUpdate dto) {
+       
+        return productService.updateProduct(id, dto)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long id) {
-        return service.getProductId(id)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
+        return productService.getProductById(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());     
     }
 
     @GetMapping
     public ResponseEntity<List<Product>> findAll() {
-        return ResponseEntity.ok(service.getAll());
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        boolean result = service.deleteProduct(id);
-
-        if (result) {
-            return ResponseEntity.status(204).build();
-        }else{
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(productService.getAll());
     }
 }
