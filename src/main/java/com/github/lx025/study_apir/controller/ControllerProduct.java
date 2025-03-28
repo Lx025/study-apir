@@ -33,7 +33,6 @@ public class ControllerProduct {
     public ResponseEntity<ProductResponse> create(
             @RequestBody ProductRequestCreate dto) {
         return ResponseEntity.status(201).body(
-
                 new ProductResponse().toDto(
                         productService.createProduct(dto)));
     }
