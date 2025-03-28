@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.github.lx025.study_apir.model.Product;
+import com.github.lx025.study_apir.repository.ProductRepository;
 
 import dto.ProductRequestCreate;
 import dto.ProductRequestUpdate;
@@ -17,25 +18,23 @@ import dto.ProductRequestUpdate;
 
 @Service
 public class ProductService {
-    private List<Product> products = new ArrayList<>();
-    private Long sequence = 1L;
+    private ProductRepository productRepository;
 
     private static final BigDecimal VALOR_PADRAO 
         = new BigDecimal(2000);
 
     public Product createProduct(ProductRequestCreate dto) {
         Product product = new Product();        
-        product.setId(sequence++);
         product.setNome(dto.getNome());
         product.setValor(VALOR_PADRAO);
-        products.add(product);
-        return product;
+        return productRepository.save(product);
     }
 
     public Optional<Product> getProductById(Long id) {
-        return products.stream()
-            .filter(p -> p.getId().equals(id))
-            .findFirst();
+        // return products.stream()
+        //     .filter(p -> p.getId().equals(id))
+        //     .findFirst();
+        return null;
     }
 
     public List<Product> getAll() {

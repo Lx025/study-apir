@@ -2,8 +2,13 @@ package com.github.lx025.study_apir.model;
 
 import java.math.BigDecimal;
 
-public class Product {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
+
+public class Product {
+    @Id
     private Long id;
     private String nome;
     private BigDecimal valor;
@@ -32,5 +37,4 @@ public class Product {
         return valor;
     }
 
-    
 }
