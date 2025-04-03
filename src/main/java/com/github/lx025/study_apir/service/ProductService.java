@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.lx025.study_apir.model.Product;
@@ -15,6 +16,8 @@ import dto.ProductRequestUpdate;
 
 @Service
 public class ProductService {
+
+    @Autowired
     private ProductRepository productRepository;
 
     private static final BigDecimal VALOR_PADRAO = new BigDecimal(2000);
@@ -34,7 +37,7 @@ public class ProductService {
     }
 
     public List<Product> getAll() {
-        return null;
+        return productRepository.findAll();
     }
 
     public Optional<Product> updateProduct(
