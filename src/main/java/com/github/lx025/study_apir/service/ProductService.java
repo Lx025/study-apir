@@ -13,18 +13,14 @@ import com.github.lx025.study_apir.repository.ProductRepository;
 import dto.ProductRequestCreate;
 import dto.ProductRequestUpdate;
 
-
-
-
 @Service
 public class ProductService {
     private ProductRepository productRepository;
 
-    private static final BigDecimal VALOR_PADRAO 
-        = new BigDecimal(2000);
+    private static final BigDecimal VALOR_PADRAO = new BigDecimal(2000);
 
     public Product createProduct(ProductRequestCreate dto) {
-        Product product = new Product();        
+        Product product = new Product();
         product.setNome(dto.getNome());
         product.setValor(VALOR_PADRAO);
         return productRepository.save(product);
@@ -32,29 +28,30 @@ public class ProductService {
 
     public Optional<Product> getProductById(Long id) {
         // return products.stream()
-        //     .filter(p -> p.getId().equals(id))
-        //     .findFirst();
+        // .filter(p -> p.getId().equals(id))
+        // .findFirst();
         return null;
     }
 
     public List<Product> getAll() {
-        return products;
+        return null;
     }
 
     public Optional<Product> updateProduct(
             Long id, ProductRequestUpdate dto) {
 
-        return products.stream()
-            .filter(p -> p.getId().equals(id))
-            .findFirst()
-            .map(p -> {                
-                p.setValor(dto.getValor());
-                return p;
-                }
-            );
+        // products.stream()
+        // .filter(p -> p.getId().equals(id))
+        // .findFirst()
+        // .map(p -> {
+        // p.setValor(dto.getValor());
+        // return p;
+        // });
+
+        return null;
     }
 
     public boolean deleteProduct(Long id) {
-        return products.removeIf(p -> p.getId().equals(id));
+        return false;
     }
 }
