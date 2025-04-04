@@ -2,21 +2,26 @@ package dto;
 
 import java.math.BigDecimal;
 
+import com.github.lx025.study_apir.model.Product;
+
 public class ProductRequestCreate {    
     private String nome;
-    private BigDecimal valor;
+
+    public Product toModel(){
+
+        BigDecimal VALOR_PADRAO = new BigDecimal(2000);
+        Product product = new Product();
+        product.setValor(VALOR_PADRAO);
+        product.setNome(this.nome);
+        return product;
+
+    }
    
     public String getNome() {
         return nome;
     }
     public void setNome(String nome) {
         this.nome = nome;
-    }
-    public BigDecimal getValor() {
-        return valor;
-    }
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
     }      
 
     
