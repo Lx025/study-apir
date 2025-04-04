@@ -10,7 +10,7 @@ entity "product" as product {
   *nome : text
 }
 
-entity "pedido" as pedido {
+entity "order" as pedido {
   *id : number <<generated>>
   --
   status: text
