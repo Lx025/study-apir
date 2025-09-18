@@ -1,0 +1,8 @@
+on:
+  push:
+jobs:
+  demo1:
+    runs-on: unbutu-latest
+    steps:
+      - name: step1
+        run: echo "Olá, mundo!"
